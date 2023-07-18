@@ -1,7 +1,18 @@
 # diy-dnn
 Simple NumPy feed-forward neural network library from scratch. Applied to MNIST dataset classification task.
 
-## Usage
+## 1. Summary
+
+### 1.1. Layers
+
+| Implemented | Layer | Forward equation | Backward equation(s) |
+| --- | --- | --- | --- |
+| Dense | ✓ | $\mathbf{Z} = \mathbf{W}^T \cdot \mathbf{X} + \mathbf{b}$ | --- |
+| ReLU | ✓ | --- | --- |
+| Softmax | ✓ | --- | --- |
+| BatchNorm | ✓ | --- | --- |
+
+## 2. Usage
 1. Define architectures and train on MNIST dataset in `.../experiments/mnist_classification_train_and_validate.py`
   1. `DATA_CACHE_DIR`, `PLOTS_DIR` and `MODEL_CHECKPOINTS_DIR` define the directories for saving training/validation loop artefacts
   2. `RUN_SETTINGS` is a list of dictionaries. Each element of the list is a neural net architecture (allowing training and validation of several candidate architectures). Each dictionary defines both the neural net `"architecture"`, and training loop settings.
