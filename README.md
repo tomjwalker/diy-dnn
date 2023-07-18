@@ -7,7 +7,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 | Implemented | Layer | Forward equation | Backward equation(s) | TEMP | 
 | --- | --- | --- | --- | --- |
-| Dense | ✓ | $\mathbf{Z} = \mathbf{W}^T \cdot \mathbf{X} + \mathbf{b}$ | --- | NO: check (1/m) term in backprop |
+| Dense | ✓ | $\frac{\partial \mathbf{L}}{\partial \mathbf{A}_{l-1}} = \mathbf{W}_{l} \cdot \frac{\partial \mathbf{L}}{\partial \mathbf{Z}_{l}}$ | --- | NO: check (1/m) term in backprop |
 | ReLU | ✓ | --- | --- | --- |
 | Softmax | ✓ | --- | --- | --- |
 | BatchNorm | ✓ | --- | --- | --- |
