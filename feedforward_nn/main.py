@@ -1,7 +1,7 @@
 import numpy as np
 
-from supervised_learning.low_level_implementations.feedforward_nn.layers import Dense, Relu, Softmax
-from supervised_learning.low_level_implementations.feedforward_nn.models import SeriesModel
+from feedforward_nn.layers import Dense, Relu, Softmax
+from feedforward_nn.models import SeriesModel
 
 # Give a demo input
 x = np.random.randn(784, 10)

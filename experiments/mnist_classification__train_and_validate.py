@@ -3,14 +3,14 @@ import os
 import numpy as np
 import pandas as pd
 
-from supervised_learning.datasets.mnist.data_utils import load_mnist, preprocess_mnist, show_digit_samples
-from supervised_learning.low_level_implementations.feedforward_nn.costs_and_metrics import (
+from datasets.mnist.data_utils import load_mnist, preprocess_mnist
+from feedforward_nn.costs_and_metrics import (
     CategoricalCrossentropyCost, AccuracyMetric)
-from supervised_learning.low_level_implementations.feedforward_nn.layers import Dense, Relu, Softmax, BatchNorm
-from supervised_learning.low_level_implementations.feedforward_nn.models import SeriesModel
-from supervised_learning.low_level_implementations.feedforward_nn.optimisers import GradientDescentOptimiser
-from supervised_learning.low_level_implementations.feedforward_nn.tasks import (TrainingTask, EvaluationTask,
-                                                                                ModelSaveTask, Loop)
+from feedforward_nn.layers import Dense, Relu, Softmax, BatchNorm
+from feedforward_nn.models import SeriesModel
+from feedforward_nn.optimisers import GradientDescentOptimiser
+from feedforward_nn.tasks import (TrainingTask, EvaluationTask,
+                                  ModelSaveTask, Loop)
 
 import matplotlib.pyplot as plt
 
@@ -128,9 +128,9 @@ def save_metric_logs(metric_log_training, metric_log_evaluation, metric_name, me
 
 # Parameters and architecture names. These are used both as parameters into the model/loop, and as filenames for
 # saving the outputs of the training loop
-DATA_CACHE_DIR = "./data_cache"
-PLOTS_DIR = "./plots"
-MODEL_CHECKPOINTS_DIR = "./model_checkpoints"
+DATA_CACHE_DIR = "data_cache"
+PLOTS_DIR = "plots"
+MODEL_CHECKPOINTS_DIR = "model_checkpoints"
 
 # This list specifies a sweep of different models/runs. Each element of the list is a dictionary, which specifies the
 # run config.
