@@ -2,10 +2,8 @@ import pickle
 
 import pandas as pd
 
-from supervised_learning.low_level_implementations.feedforward_nn.models import load_checkpoint
-from supervised_learning.datasets.mnist.data_utils import show_digit_samples
-
-import matplotlib.pyplot as plt
+from feedforward_nn.models import load_checkpoint
+from datasets.mnist.data_utils import show_digit_samples
 
 import numpy as np
 
@@ -64,9 +62,9 @@ def reorder_run_sweep(run_sweep_dict):
 
 # Parameters and architecture names. These are used both as parameters into the model/loop, and as filenames for
 # saving the outputs of the training loop
-DATA_CACHE_DIR = "./data_cache"
-PLOTS_DIR = "./plots"
-MODEL_CHECKPOINTS_DIR = "./model_checkpoints"
+DATA_CACHE_DIR = "data_cache"
+PLOTS_DIR = "plots"
+MODEL_CHECKPOINTS_DIR = "model_checkpoints"
 
 # List of dict of run settings. Each dict specifies a run, and the list of dicts specifies a set of runs to compare
 RUN_SETTINGS = [

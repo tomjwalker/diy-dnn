@@ -6,9 +6,9 @@ import pickle
 
 import numpy as np
 
-from supervised_learning.low_level_implementations.feedforward_nn.layers import Dense, BatchNorm
-from supervised_learning.low_level_implementations.feedforward_nn.optimisers import GradientDescentOptimiser
-from supervised_learning.low_level_implementations.feedforward_nn.utils import ClipNorm
+from feedforward_nn.layers import Dense, BatchNorm
+from feedforward_nn.optimisers import GradientDescentOptimiser
+from feedforward_nn.utils import ClipNorm
 
 
 class SeriesModel:

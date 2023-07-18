@@ -13,11 +13,11 @@ from tqdm.auto import tqdm
 
 import os
 
-from supervised_learning.low_level_implementations.feedforward_nn.costs_and_metrics import \
+from feedforward_nn.costs_and_metrics import \
     (BaseMetric, CategoricalCrossentropyCost, AccuracyMetric)
-from supervised_learning.low_level_implementations.feedforward_nn.models import SeriesModel
-from supervised_learning.low_level_implementations.feedforward_nn.optimisers import GradientDescentOptimiser
-from supervised_learning.low_level_implementations.feedforward_nn.utils import ClipNorm
+from feedforward_nn.models import SeriesModel
+from feedforward_nn.optimisers import GradientDescentOptimiser
+from feedforward_nn.utils import ClipNorm
 
 
 def train_val_split(features, labels, train_fraction=0.8):

@@ -5,7 +5,7 @@ A demonstration of the MNIST dataset and how to load it.
 
 import numpy as np
 
-from supervised_learning.datasets.mnist.data_utils import load_mnist, preprocess_mnist, show_digit_samples
+from datasets.mnist.data_utils import load_mnist, preprocess_mnist, show_digit_samples
 
 # Load MNIST dataset
 features, labels = load_mnist()
