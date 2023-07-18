@@ -5,12 +5,12 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 ### 1.1. Layers
 
-| Implemented | Layer | Forward equation | Backward equation(s) |
-| --- | --- | --- | --- |
-| Dense | ✓ | $\mathbf{Z} = \mathbf{W}^T \cdot \mathbf{X} + \mathbf{b}$ | --- |
-| ReLU | ✓ | --- | --- |
-| Softmax | ✓ | --- | --- |
-| BatchNorm | ✓ | --- | --- |
+| Implemented | Layer | Forward equation | Backward equation(s) | TEMP | 
+| --- | --- | --- | --- | --- |
+| Dense | ✓ | $\mathbf{Z} = \mathbf{W}^T \cdot \mathbf{X} + \mathbf{b}$ | --- | NO: check (1/m) term in backprop |
+| ReLU | ✓ | --- | --- | --- |
+| Softmax | ✓ | --- | --- | --- |
+| BatchNorm | ✓ | --- | --- | --- |
 
 ## 2. Usage
 1. Define architectures and train on MNIST dataset in `.../experiments/mnist_classification_train_and_validate.py`
