@@ -18,7 +18,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | | Notes | Notes |
 | Relu | <img src="media/relu_forward.png" alt="Image" width="100"/> | <img src="media/relu_backward.png" alt="Image" width="100"/> |
 | | Notes | Notes |
-| Softmax | <img src="media/softmax_forward.png" alt="Image" width="300"/> | |
+| Softmax | <img src="media/softmax_forward.png" alt="Image" width="300"/> | <img src="media/softmax_backward.png" alt="Image" width="300"/> |
 | | Notes | Notes |
 
 
