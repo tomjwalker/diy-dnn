@@ -5,12 +5,14 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 ### 1.1.1 Layers - forward propagation
 
-| Implemented | Layer | Element-wise | Matrix form | Diagram | TEMP | 
-| --- | --- | --- | --- | --- | --- |
-| Dense | ✓ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | ![](./media/dense_forward.png) | NO: check (1/m) term in backprop |
-| ReLU | ✓ | $\mathbf{A}^l = Relu(\mathbf{Z}^l)$ | $\mathbf{A}^l = Relu(\mathbf{Z}^l)$ | --- | --- |
-| Softmax | ✓ | --- | --- | --- | --- |
-| BatchNorm | ✓ | --- | --- | --- | --- |
+| Implemented | Layer | Element-wise | Matrix form | Diagram | 
+| --- | --- | --- | --- | --- |
+| Dense | ✓ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | ![](./media/dense_forward.png) |
+| ReLU | ✓ | $\mathbf{A}^l = Relu(\mathbf{Z}^l)$ | $\mathbf{A}^l = Relu(\mathbf{Z}^l)$ | --- |
+| Softmax | ✓ | --- | --- | --- |
+| BatchNorm | ✓ | --- | --- | --- |
+
+TEMP: check dense backprop (1/m) term
 
 ## 2. Usage
 1. Define architectures and train on MNIST dataset in `.../experiments/mnist_classification_train_and_validate.py`
