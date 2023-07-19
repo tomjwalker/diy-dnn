@@ -17,6 +17,8 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | Dense | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | ![](media/dense_forward.png) |
 
 
+(media/dense_forward.png)
+
 TEMP: check dense backprop (1/m) term
 
 ## 2. Usage
