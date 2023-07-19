@@ -5,16 +5,16 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 ### 1.1.1 Layers - forward propagation
 
-| Implemented | Layer | Element-wise | Matrix form |
+| Layer | Implemented | Element-wise | Matrix form |
 | :---: | :---: | :---: | :---: |
 | Dense | ✓ | $z_i^l = \sum_j{w_{ij}^l a_j^{l-1}} + b_i^l$ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ |
 | ReLU | ✓ | $a_i = Relu(z_i)$ | $\mathbf{A} = Relu(\mathbf{Z})$ |
 | Softmax | ✓ | $$a_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$$ | $$\mathbf{A} = \frac{\exp(\mathbf{Z})}{\mathbf{1}^T \cdot \exp(\mathbf{Z})}$$ |
 | BatchNorm | ✓ | xxx | xxx |
 
-| Layer | Diagram |
-| :---: | :---: |
-| Dense | ![](media/dense_forward.png) |
+| Layer | Forward | Backward |
+| :---: | :---: | :---: |
+| Dense | <img src="media/dense_forward.png" alt="Image" width="600"/> | <img src="media/dense_backward.png" alt="Image" width="600"/> |
 
 
 TEMP: check dense backprop (1/m) term
