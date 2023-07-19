@@ -9,8 +9,8 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | --- | --- | --- | --- | --- |
 | Dense | ✓ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | ![](./media/dense_forward.png) |
 | ReLU | ✓ | $\mathbf{A}^l = Relu(\mathbf{Z}^l)$ | $\mathbf{A}^l = Relu(\mathbf{Z}^l)$ | ![](./media/dense_forward.png) |
-| Softmax | ✓ | --- | --- | ![](./media/dense_forward.png) |
-| BatchNorm | ✓ | --- | --- | ![](./media/dense_forward.png) |
+| Softmax | ✓ | xxx | xxx | ![](./media/dense_forward.png) |
+| BatchNorm | ✓ | xxx | xxx | ![](./media/dense_forward.png) |
 
 TEMP: check dense backprop (1/m) term
 
