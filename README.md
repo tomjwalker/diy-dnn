@@ -20,3 +20,11 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
   1. (Script has similar global parameters to set as `...train_and_validate`)
   2. Generates a summary log of metrics for all runs included
   3. Generates a visualisation of sample MNIST inferences for the trained model (on the validation set)
+
+## 3. Matrix Calculus Cheat-sheet
+
+| Transformation | Element form | Matrix form | Notes |
+| --- | --- | --- | --- |
+| --- | --- | --- | --- |
+| --- | --- | --- | --- |
+| --- | --- | --- | --- |
