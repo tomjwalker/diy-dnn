@@ -16,6 +16,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | :---: | :---: | :---: |
 | Dense | <img src="media/dense_forward.png" alt="Image" width="600"/> | <img src="media/dense_backward.png" alt="Image" width="600"/> |
 | Relu | <img src="media/relu_forward.png" alt="Image" width="100"/> | <img src="media/relu_backward.png" alt="Image" width="100"/> |
+| Softmax | <img src="media/softmax_forward.png" alt="Image" width="100"/> | |
 
 
 TEMP: check dense backprop (1/m) term
