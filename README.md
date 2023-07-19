@@ -21,6 +21,9 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
   2. Generates a summary log of metrics for all runs included
   3. Generates a visualisation of sample MNIST inferences for the trained model (on the validation set)
 
+## 3. Notation / conventions
+- Temp: e.g. dz = del(L)/del(z)
+
 ## 3. Matrix Calculus Cheat-sheet
 
 | Transformation | Element-wise | Matrix form | Notes |
