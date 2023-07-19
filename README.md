@@ -12,9 +12,9 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | Softmax | ✓ | xxx | xxx | ![](media/dense_forward.png) |
 | BatchNorm | ✓ | xxx | xxx | ![](media/dense_forward.png) |
 
-| Layer | Diagram | Diagram | 
-| --- | --- | --- |
-| Dense | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | ![](media/dense_forward.png) |
+| Layer | Diagram |
+| --- | --- |
+| Dense | ![](media/dense_forward.png) |
 
 
 (media/dense_forward.png)
