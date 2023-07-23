@@ -60,8 +60,28 @@ TEMP: check dense backprop (1/m) term
 
 ## 3. Matrix Calculus Cheat-sheet
 
-| Transformation | Element-wise | Matrix form | Notes |
-| --- | --- | --- | --- |
-| --- | --- | --- | --- |
-| --- | --- | --- | --- |
-| --- | --- | --- | --- |
+### 3.1. Numerator-layout convention
+* Given the following input objects...
+    * $x, y$: Scalars
+    * $\mathbf{x}, \mathbf{y}$: Column vectors, sizes respectively (n, 1), (m, 1)
+    * $\mathbf{X}, \mathbf{Y}$: Matrices, sizes respectively (n, m), (p, q)
+* ...the following derivatives (with dimensions) are possible
+    * $\frac{\partial y}{\partial x}$ // scalar-by-scalar // Scalar output (size 1)
+    * $\frac{\partial \mathbf{y}}{\partial x}$ // vector-by-scalar // Column vector output (same shape as $\mathbf{y}$)
+    * $\frac{\partial y}{\partial \mathbf{x}}$ // scalar-by-vector // Row vector output (same shape as $\mathbf{x}^T$)
+    * $\frac{\partial \mathbf{y}}{\partial \mathbf{x}}$ // vector-by-vector (Jacobian) // Matrix output (shape (n, m) i.e. num rows of $\mathbf{y}$ and num columns of $\mathbf{x}^T$)
+    * $\frac{\partial \mathbf{Y}}{\partial x}$ // matrix-by-scalar // Matrix output, same shape as input matrix \mathbf{Y} (n, m)
+    * $\frac{\partial y}{\partial \mathbf{X}}$ // scalar-by-matrix // Matrix output, same shape as transpose of denominator matrix (same shape as $\mathbf{X}^T$, i.e. (q, p))
+ 
+### 3.2. Cost derivative abbreviation
+Following the standard machine-learning abbreviation of the cost. 
+* Given:
+    * Scalar cost, $J$
+    * Any neural network layer object, generally a vector e.g. $\mathbf{z}$ or matrix e.g. $\mathbf{W}$
+* A partial differential of the cost w.r.t the network object, e.g. $\frac{\partial J}{\partial \mathbf{z}}$, can be abbreviated $d\mathbf{z}$
+* Following the numerator-layout convention above, the non-scalar properties in the denominator should be transposed
+* 
+
+#### 3.2.1. Work-through with a specific example
+<img src="media/dense_forward.png" alt="Image" width="600"/>
+<img src="media/dense_backward.png" alt="Image" width="600"/>
