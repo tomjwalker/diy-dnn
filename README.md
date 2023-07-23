@@ -22,7 +22,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | | Notes | Notes |
 | Softmax | <img src="media/softmax_forward.png" alt="Image" width="300"/> | <img src="media/softmax_backward.png" alt="Image" width="300"/> |
 | | Notes | Notes |
-| BatchNorm | <img src="media/batchnorm_forward.png" alt="Image" width="300"/> | |
+| BatchNorm | <img src="media/batchnorm_forward.png" alt="Image" width="300"/> | <img src="media/batchnorm_backward.png" alt="Image" width="300"/> |
 | | Notes | Notes |
 | (Cost) Categorical cross-entropy | | |
 | | Notes | Notes |
