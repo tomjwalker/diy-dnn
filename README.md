@@ -3,7 +3,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 ## 1. Summary
 
-### 1.1.1 Layers - forward propagation
+### 1.1.1 Layers
 
 | Layer | Implemented | Element-wise | Matrix form |
 | :---: | :---: | :---: | :---: |
@@ -11,6 +11,8 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | ReLU | ✓ | $a_i = Relu(z_i)$ | $\mathbf{A} = Relu(\mathbf{Z})$ |
 | Softmax | ✓ | $$a_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$$ | $$\mathbf{A} = \frac{\exp(\mathbf{Z})}{\mathbf{1}^T \cdot \exp(\mathbf{Z})}$$ |
 | BatchNorm | ✓ | xxx | xxx |
+| (Cost) Categorical cross-entropy | ✓ | xxx | xxx |
+| Attention | | xxx | xxx |
 
 | Layer | Forward | Backward |
 | :---: | :---: | :---: |
@@ -22,7 +24,25 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | | Notes | Notes |
 | BatchNorm | <img src="media/batchnorm_forward.png" alt="Image" width="300"/> | |
 | | Notes | Notes |
+| (Cost) Categorical cross-entropy | | |
+| | Notes | Notes |
+| Attention | | |
+| | Notes | Notes |
 
+### 1.1.2 Optimisers
+
+| Optimiser | Implemented | Equation | Explanation |
+| :---: | :---: | :---: | :---: |
+| (Mini-batch) SGD | ✓ |  |  |
+| Adam | |  |  |
+| AdamW | |  |  |
+
+### 1.1.3 Weight initialisers
+
+| Optimiser | Implemented | Equation | Explanation |
+| :---: | :---: | :---: | :---: |
+| Zero | ✓ |  |  |
+| He | ✓ |  |  |
 
 TEMP: check dense backprop (1/m) term
 
