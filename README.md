@@ -79,9 +79,22 @@ Following the standard machine-learning abbreviation of the cost.
     * Scalar cost, $J$
     * Any neural network layer object, generally a vector e.g. $\mathbf{z}$ or matrix e.g. $\mathbf{W}$
 * A partial differential of the cost w.r.t the network object, e.g. $\frac{\partial J}{\partial \mathbf{z}}$, can be abbreviated $d\mathbf{z}$
-* Following the numerator-layout convention above, the non-scalar properties in the denominator should be transposed
-* 
+* Following the numerator-layout convention above, the non-scalar properties in the denominator should be transposed 
 
 #### 3.2.1. Work-through with a specific example
-<img src="media/dense_forward.png" alt="Image" width="600"/>
-<img src="media/dense_backward.png" alt="Image" width="600"/>
+
+<p align="center">
+  <img src="media/dense_forward.png" alt="Image" width="800"/>
+</p>
+
+```math
+\mathbf{z} = \begin{pmatrix}
+z_1 \\
+z_2
+\end{pmatrix}
+```
+
+<p align="center">
+  <img src="media/dense_backward.png" alt="Image" width="800"/>
+</p>
+
