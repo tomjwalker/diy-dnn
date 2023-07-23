@@ -5,12 +5,12 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 ### 1.1.1 Layers
 
-| Layer | Implemented | Element-wise | Matrix form |
+| Layer | Implemented | Forward *(element-wise)* | Forward *(matrix form)* |
 | :---: | :---: | :---: | :---: |
 | Dense | ✓ | $z_i^l = \sum_j{w_{ij}^l a_j^{l-1}} + b_i^l$ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ |
 | ReLU | ✓ | $a_i = Relu(z_i)$ | $\mathbf{A} = Relu(\mathbf{Z})$ |
 | Softmax | ✓ | $$a_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$$ | $$\mathbf{A} = \frac{\exp(\mathbf{Z})}{\mathbf{1}^T \cdot \exp(\mathbf{Z})}$$ |
-| BatchNorm | ✓ | xxx | xxx |
+| BatchNorm | ✓ | $$\hat{x}_i = \frac{x_i - \mu(x_j)}{\sqrt{\sigma(x_j)^2 + \epsilon}}$$ <br> $$y_i = \gamma \hat{x}_i + \beta$$ | $$\hat{\mathbf{x}} = \frac{\mathbf{x} - \mu}{\sqrt{\mathbf{\sigma}^2 + \epsilon}}$$ <br> $$\mathbf{y} = \gamma \hat{\mathbf{x}} + \beta$$ |
 | (Cost) Categorical cross-entropy | ✓ | xxx | xxx |
 | Attention | | xxx | xxx |
 
