@@ -5,14 +5,14 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 ### 1.1.1 Layers
 
-| Layer | Implemented | Forward *(element-wise)* | Forward *(matrix form)* |
-| :---: | :---: | :---: | :---: |
-| Dense | ✓ | $z_i^l = \sum_j{w_{ij}^l a_j^{l-1}} + b_i^l$ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ |
-| ReLU | ✓ | $a_i = Relu(z_i)$ | $\mathbf{A} = Relu(\mathbf{Z})$ |
-| Softmax | ✓ | $$a_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$$ | $$\mathbf{A} = \frac{\exp(\mathbf{Z})}{\mathbf{1}^T \cdot \exp(\mathbf{Z})}$$ |
-| BatchNorm | ✓ | $$\hat{x}_i = \frac{x_i - \mu(x_j)}{\sqrt{\sigma(x_j)^2 + \epsilon}}$$ <br> $$y_i = \gamma \hat{x}_i + \beta$$ | $$\hat{\mathbf{x}} = \frac{\mathbf{x} - \mu}{\sqrt{\mathbf{\sigma}^2 + \epsilon}}$$ <br> $$\mathbf{y} = \gamma \hat{\mathbf{x}} + \beta$$ |
-| (Cost) Categorical cross-entropy | ✓ | xxx | xxx |
-| Attention | | xxx | xxx |
+| Layer | Implemented | Forward *(element-wise)* | Forward *(matrix form)* | Backward *(element-wise)* | Backward *(matrix form)* |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| Dense | ✓ | $z_i^l = \sum_j{w_{ij}^l a_j^{l-1}} + b_i^l$ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | :---: | :---: |
+| ReLU | ✓ | $a_i = Relu(z_i)$ | $\mathbf{A} = Relu(\mathbf{Z})$ | $dz_i = 0, z_i < 0$ <br> $dz_i = da_i, z_i >= 0$ | $d\mathbf{Z} = Relu'(d\mathbf{A})$ |
+| Softmax | ✓ | $$a_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$$ | $$\mathbf{A} = \frac{\exp(\mathbf{Z})}{\mathbf{1}^T \cdot \exp(\mathbf{Z})}$$ | :---: | :---: |
+| BatchNorm | ✓ | $$\hat{x}_i = \frac{x_i - \mu(x_j)}{\sqrt{\sigma(x_j)^2 + \epsilon}}$$ <br> $$y_i = \gamma \hat{x}_i + \beta$$ | $$\hat{\mathbf{x}} = \frac{\mathbf{x} - \mu}{\sqrt{\mathbf{\sigma}^2 + \epsilon}}$$ <br> $$\mathbf{y} = \gamma \hat{\mathbf{x}} + \beta$$ | :---: | :---: |
+| (Cost) Categorical cross-entropy | ✓ | xxx | xxx | :---: | :---: |
+| Attention | | xxx | xxx | :---: | :---: |
 
 | Layer | Forward | Backward |
 | :---: | :---: | :---: |
@@ -54,9 +54,6 @@ TEMP: check dense backprop (1/m) term
   1. (Script has similar global parameters to set as `...train_and_validate`)
   2. Generates a summary log of metrics for all runs included
   3. Generates a visualisation of sample MNIST inferences for the trained model (on the validation set)
-
-## 3. Notation / conventions
-- Temp: e.g. dz = del(L)/del(z)
 
 ## 3. Matrix Calculus Cheat-sheet
 
