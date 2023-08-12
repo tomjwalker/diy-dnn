@@ -81,7 +81,8 @@ Following the standard machine-learning abbreviation of the cost.
     * Scalar cost, $J$
     * Any neural network layer object, generally a vector e.g. $\mathbf{z}$ or matrix e.g. $\mathbf{W}$
 * A partial differential of the cost w.r.t the network object, e.g. $\frac{\partial J}{\partial \mathbf{z}}$, can be abbreviated $d\mathbf{z}$
-* Following the numerator-layout convention above, the non-scalar properties in the denominator should be transposed 
+* Following the numerator-layout convention above, the non-scalar properties in the denominator should be transposed, e.g. if $\mathbf{Z}$ has shape $(n, m)$ then $d\mathbf{Z}$ would have shape $(m, n)$
+* **However, while bearing the above convention in mind when working out calculations, a-posteriori apply a further transformation if necessary to final (backprop) equations, so that arrays and their gradients have the same dimensions**  
 
 #### 3.2.1. Work-through with a specific example
 
@@ -96,10 +97,10 @@ Working on the (specific) left-hand-side diagram
 \mathbf{z} = \begin{pmatrix}
 z_0 \\
 z_1
-\end{pmatrix} = \begin{bmatrix}
+\end{pmatrix} = \begin{pmatrix}
     w_{00} & w_{01} & w_{02} \\
     w_{10} & w_{11} & w_{12}
-\end{bmatrix} \cdot \begin{pmatrix}
+\end{pmatrix} \cdot \begin{pmatrix}
 a_0 \\
 a_1 \\
 a_2
@@ -111,4 +112,43 @@ a_2
 <p align="center">
   <img src="media/dense_backward.png" alt="Image" width="800"/>
 </p>
+
+Super-specific (specific unit calculation - relevant weight edges in red):
+$$da_0 = w_{00}dz_0 + w_{10}dz_1$$
+
+Specific (left-hand diagram, specific dense layout).
+
+*First, following the numerator-layout convention, which has scalar-by-vector derivatives transpose the original vector parameter's shape:*
+
+```math
+d\mathbf{a} = \begin{pmatrix}
+  da_0 & da_1 & da_2
+\end{pmatrix} = \begin{pmatrix}
+  dz_0 & dz_1
+\end{pmatrix} \cdot \begin{pmatrix}
+    w_{00} & w_{01} & w_{02} \\
+    w_{10} & w_{11} & w_{12}
+\end{pmatrix}
+```
+
+*Then, as per bold point in 3.2., applying further transformation to keep parameters and their gradients the same shape:*
+
+```math
+d\mathbf{a} = \begin{pmatrix}
+  da_0 \\
+  da_1 \\
+  da_2
+\end{pmatrix} = \begin{pmatrix}
+    w_{00} & w_{10} \\
+    w_{01} & w_{11} \\
+    w_{02} & w_{12}
+\end{pmatrix} \cdot \begin{pmatrix}
+  dz_0 \\
+  dz_1
+\end{pmatrix}
+```
+
+*or:*
+$$d\mathbf{a} = \mathbf{W}^T \cdot d\mathbf{z}$$
+
 
