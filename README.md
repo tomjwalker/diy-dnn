@@ -98,7 +98,7 @@ Working on the (specific) left-hand-side diagram
 (Dropping layer superscripts, i.e. assuming $\mathbf{z}^1 = \mathbf{z}$ and $\mathbf{a}^0 = \mathbf{a}$)
 
 ```math
-\mathbf{z} = \begin{pmatrix}
+\begin{pmatrix}
 z_0 \\
 z_1
 \end{pmatrix} = \begin{pmatrix}
@@ -125,7 +125,7 @@ Specific (left-hand diagram, specific dense layout).
 *First, following the numerator-layout convention, which has scalar-by-vector derivatives transpose the original vector parameter's shape:*
 
 ```math
-d\mathbf{a} = \begin{pmatrix}
+\begin{pmatrix}
   da_0 & da_1 & da_2
 \end{pmatrix} = \begin{pmatrix}
   dz_0 & dz_1
@@ -138,7 +138,7 @@ d\mathbf{a} = \begin{pmatrix}
 *Then, as per bold point in 3.2., applying further transformation to keep parameters and their gradients the same shape:*
 
 ```math
-d\mathbf{a} = \begin{pmatrix}
+\begin{pmatrix}
   da_0 \\
   da_1 \\
   da_2
