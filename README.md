@@ -9,7 +9,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | Dense | ✓ | $z_i^l = \sum_j{w_{ij}^l a_j^{l-1}} + b_i^l$ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | :---: | :---: |
 | ReLU | ✓ | $a_i = Relu(z_i)$ | $\mathbf{A} = Relu(\mathbf{Z})$ | $dz_i = 0, z_i < 0$ <br> $dz_i = da_i, z_i >= 0$ | $d\mathbf{Z} = Relu'(d\mathbf{A})$ |
-| Softmax | ✓ | $$a_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$$ | $$\mathbf{A} = \frac{\exp(\mathbf{Z})}{\mathbf{1}^T \cdot \exp(\mathbf{Z})}$$ | :---: | :---: |
+| Softmax | ✓ | $$a_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$$ | $$\mathbf{A} = \frac{\exp(\mathbf{Z})}{\mathbf{1}^T \cdot \exp(\mathbf{Z})}$$ | $$dz_j = \sum_i{da_i \frac{\partial a_i}{\partial z_j}}$$ <br> $\rightarrow$ <br> $$dz_j = \sum_i{da_i \cdot (a_i \cdot (\delta_{ij} - a_j))}$$ | $$d\mathbf{Z} = d\mathbf{A} \cdot \mathbf{D}$$ <br> where $\mathbf{D}$ is Jacobian with differing elements on- and off- diagonal|
 | BatchNorm | ✓ | $$\hat{x}_i = \frac{x_i - \mu(x_j)}{\sqrt{\sigma(x_j)^2 + \epsilon}}$$ <br> $$y_i = \gamma \hat{x}_i + \beta$$ | $$\hat{\mathbf{x}} = \frac{\mathbf{x} - \mu}{\sqrt{\mathbf{\sigma}^2 + \epsilon}}$$ <br> $$\mathbf{y} = \gamma \hat{\mathbf{x}} + \beta$$ | :---: | :---: |
 | (Cost) Categorical cross-entropy | ✓ | xxx | xxx | :---: | :---: |
 | Attention | | xxx | xxx | :---: | :---: |
@@ -20,7 +20,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | Relu | <img src="media/relu_forward.png" alt="Image" width="100"/> | <img src="media/relu_backward.png" alt="Image" width="100"/> |
 | | - Introduces non-linearity <br> - Avoids vanishing gradient problem (unlike sigmoid activations) <br> - Simple gradient calculation | Backprop equation is almost the same as the forward prop equation once the chain rule has been applied (trans-layer derivative applied as product to (backprop) input activation derivative da_i, except that the conditions on layer being 0 or da_i depend on forward input z_i |
 | Softmax | <img src="media/softmax_forward.png" alt="Image" width="300"/> | <img src="media/softmax_backward.png" alt="Image" width="300"/> |
-| | Notes | Notes |
+| | Notes | NB.1: Jacobian required due to interconnected denominator in forward eqn <br> NB.2: Matrix multiplication across all input grad activations connected to grad pre-activation (see diagram) |
 | BatchNorm | <img src="media/batchnorm_forward.png" alt="Image" width="300"/> | <img src="media/batchnorm_backward.png" alt="Image" width="300"/> |
 | | Notes | Notes |
 | (Cost) Categorical cross-entropy | | |
@@ -38,10 +38,16 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 ### 1.1.3 Weight initialisers
 
-| Optimiser | Implemented | Equation | Explanation |
+| Initialiser | Implemented | Equation | Explanation |
 | :---: | :---: | :---: | :---: |
-| Zero | ✓ |  |  |
+| Random | ✓ |  |  |
 | He | ✓ |  |  |
+
+### 1.1.4 Miscellaneous techniques
+
+| Technique | Implemented | Equation | Explanation |
+| :---: | :---: | :---: | :---: |
+| Clip-norm | ✓ |  |  |
 
 TEMP: check dense backprop (1/m) term
 
