@@ -89,12 +89,24 @@ Following the standard machine-learning abbreviation of the cost.
   <img src="media/dense_forward.png" alt="Image" width="800"/>
 </p>
 
+Working on the (specific) left-hand-side diagram
+(Dropping layer superscripts, i.e. assuming $\mathbf{z}^1 = \mathbf{z}$ and $\mathbf{a}^0 = \mathbf{a}$)
+
 ```math
 \mathbf{z} = \begin{pmatrix}
-z_1 \\
-z_2
+z_0 \\
+z_1
+\end{pmatrix} = \begin{bmatrix}
+    w_{00} & w_{01} & w_{02} \\
+    w_{10} & w_{11} & w_{12}
+\end{bmatrix} \cdot \begin{pmatrix}
+a_0 \\
+a_1 \\
+a_2
 \end{pmatrix}
 ```
+
+(For the specific output neuron whose contributing edges (weights) are outlined in blue, the equation is $z_0 = w_{00}a_0 + w_{01}a_1 + w_{02}a_2$)
 
 <p align="center">
   <img src="media/dense_backward.png" alt="Image" width="800"/>
