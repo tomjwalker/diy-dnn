@@ -67,13 +67,17 @@ TEMP: check dense backprop (1/m) term
     * $x, y$: Scalars
     * $\mathbf{x}, \mathbf{y}$: Column vectors, sizes respectively (n, 1), (m, 1)
     * $\mathbf{X}, \mathbf{Y}$: Matrices, sizes respectively (n, m), (p, q)
-* ...the following derivatives (with dimensions) are possible
-    * $\frac{\partial y}{\partial x}$ // scalar-by-scalar // Scalar output (size 1)
-    * $\frac{\partial \mathbf{y}}{\partial x}$ // vector-by-scalar // Column vector output (same shape as $\mathbf{y}$)
-    * $\frac{\partial y}{\partial \mathbf{x}}$ // scalar-by-vector // Row vector output (same shape as $\mathbf{x}^T$)
-    * $\frac{\partial \mathbf{y}}{\partial \mathbf{x}}$ // vector-by-vector (Jacobian) // Matrix output (shape (n, m) i.e. num rows of $\mathbf{y}$ and num columns of $\mathbf{x}^T$)
-    * $\frac{\partial \mathbf{Y}}{\partial x}$ // matrix-by-scalar // Matrix output, same shape as input matrix \mathbf{Y} (n, m)
-    * $\frac{\partial y}{\partial \mathbf{X}}$ // scalar-by-matrix // Matrix output, same shape as transpose of denominator matrix (same shape as $\mathbf{X}^T$, i.e. (q, p))
+* ...the following derivatives (with dimensions) are possible:
+  
+| Operation                          | Output Type        | Output Shape                                            |
+|-----------------------------------|--------------------|---------------------------------------------------------|
+| $\frac{\partial y}{\partial x}$   | scalar-by-scalar   | Scalar output (size 1)                                 |
+| $\frac{\partial \mathbf{y}}{\partial x}$ | vector-by-scalar | Column vector output (same shape as $\mathbf{y}$)     |
+| $\frac{\partial y}{\partial \mathbf{x}}$ | scalar-by-vector | Row vector output (same shape as $\mathbf{x}^T$)    |
+| $\frac{\partial \mathbf{y}}{\partial \mathbf{x}}$ | vector-by-vector (Jacobian) | Matrix output (shape (n, m) i.e. num rows of $\mathbf{y}$ and num columns of $\mathbf{x}^T$) |
+| $\frac{\partial \mathbf{Y}}{\partial x}$ | matrix-by-scalar   | Matrix output, same shape as input matrix $\mathbf{Y}$ (n, m) |
+| $\frac{\partial y}{\partial \mathbf{X}}$ | scalar-by-matrix   | Matrix output, same shape as transpose of denominator matrix (same shape as $\mathbf{X}^T$, i.e. (q, p)) |
+
  
 ### 3.2. Cost derivative abbreviation
 Following the standard machine-learning abbreviation of the cost. 
