@@ -38,8 +38,8 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 | Initialiser | Implemented | Equation | Explanation |
 | :---: | :---: | :---: | :---: |
-| Random | ✓ |  |  |
-| He | ✓ |  |  |
+| Random | ✓ | $$(w_{ij}^l)^{t=0} \sim \mathcal{N}(0, 1)$$ | Simple baseline implementation |
+| He | ✓ | $$(w_{ij}^l)^{t=0} \sim \mathcal{N}(0, C)$$ <br> Where $C$ is the number of neurons in the previous activation layer | Helps with vanishing gradient problem |
 
 ### 1.1.4 Miscellaneous techniques
 
