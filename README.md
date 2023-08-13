@@ -11,7 +11,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | ReLU | ✓ | $a_i = Relu(z_i)$ | $\mathbf{A} = Relu(\mathbf{Z})$ | $dz_i = 0, z_i < 0$ <br> $dz_i = da_i, z_i >= 0$ | $d\mathbf{Z} = Relu'(d\mathbf{A})$ |
 | Softmax | ✓ | $$a_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$$ | $$\mathbf{A} = \frac{\exp(\mathbf{Z})}{\mathbf{1}^T \cdot \exp(\mathbf{Z})}$$ | $$dz_j = \sum_i{da_i \frac{\partial a_i}{\partial z_j}}$$ <br> $\rightarrow$ <br> $$dz_j = \sum_i{da_i \cdot (a_i \cdot (\delta_{ij} - a_j))}$$ | $$d\mathbf{Z} = d\mathbf{A} \cdot \mathbf{D}$$ <br> where $\mathbf{D}$ is Jacobian with differing elements on- and off- diagonal|
 | BatchNorm | ✓ | $$\hat{x}_i = \frac{x_i - \mu(x_j)}{\sqrt{\sigma(x_j)^2 + \epsilon}}$$ <br> $$y_i = \gamma \hat{x}_i + \beta$$ | $$\hat{\mathbf{x}} = \frac{\mathbf{x} - \mu}{\sqrt{\mathbf{\sigma}^2 + \epsilon}}$$ <br> $$\mathbf{y} = \gamma \hat{\mathbf{x}} + \beta$$ | :---: | :---: |
-| (Cost) Categorical cross-entropy | ✓ | $$J = -\frac{1}{m} \sum_{j, samples}^m{\sum_{i, logits}^n{y_{ij} * \log{\hat{y_{ij}}}}}$$ | xxx | $$\hat{y_{ij}} = -\frac{1}{m} \frac{y_{ij}}{\hat{y}_{ij}}$$ | :---: |
+| (Cost) Categorical cross-entropy | ✓ | $$J = -\frac{1}{m} \sum_{j, samples}^m{\sum_{i, logits}^n{y_{ij} * \log{\hat{y_{ij}}}}}$$ | $$J = -\frac{1}{m} \text{Tr}(\mathbf{Y}^T \cdot \log(\mathbf{\hat{Y}}))$$ <br> Where $\text{Tr}$ is the Trace function. Alternatively: <br> $$J = -\frac{1}{m} \mathbf{1}_n^T \cdot (\mathbf{Y} \odot \log(\mathbf{\hat{Y}}))\cdot \mathbf{1}_m$$ | $$\hat{y_{ij}} = -\frac{1}{m} \frac{y_{ij}}{\hat{y}_{ij}}$$ | $$J = -\frac{1}{m} (\mathbf{Y} \oslash \mathbf{\hat{Y}})$$ <br> Where $\oslash$ is element-wise division |
 | Attention | | xxx | xxx | :---: | :---: |
 
 | Layer | Forward | Backward |
