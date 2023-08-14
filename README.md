@@ -24,7 +24,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | BatchNorm | <img src="media/batchnorm_forward.png" alt="Image" width="300"/> | <img src="media/batchnorm_backward.png" alt="Image" width="300"/> |
 | | Mean *mu* and standard deviation *sigma* are both functions of all samples for a certain input feature (in my convention, they are calculated across the rows of the input matrices). This leads to difficulties when calculating the backpropagation equations. <br> Batch normalisation helps counter the vanishing/exploding gradients problem | Cheated here and didn't derive from first principles. Instead followed along derivation and implemented from: <br> https://chrisyeh96.github.io/2017/08/28/deriving-batchnorm-backprop.html |
 | (Cost) Categorical cross-entropy | <img src="media/cat_crossentropy_forward.png" alt="Image" width="300"/> | <img src="media/cat_crossentropy_backward.png" alt="Image" width="300"/> |
-| | Notes | Notes |
+| | Cost is implemented in a separate script (`costs_and_metrics`), but it is implemented as a network layer, with forward and backward methods | Scalar-by-matrix derivative (for mini-batch matrices Y and Yhat), so gradient is a matrix with same shape as Y / Yhat |
 
 ### 1.1.2 Optimisers
 
