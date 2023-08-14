@@ -45,7 +45,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 | Technique | Implemented | Equation | Explanation |
 | :---: | :---: | :---: | :---: |
-| Clip-norm | ✓ |  |  |
+| Clip-norm | ✓ | $\| \mathbf{W} \|_2 \leftarrow \max(\| \mathbf{W} \|_2, 5)$ | Brute-force way to avoid exploding gradients. Note: the equation to the right contains the specific threshold value found to be useful for my application on MNIST |
 
 ## 2. Usage
 1. Define architectures and train on MNIST dataset in `.../experiments/mnist_classification_train_and_validate.py`
