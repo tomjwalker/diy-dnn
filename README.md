@@ -23,7 +23,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | | Softmax is the traditional output layer for multi-class categorisation networks. The denominator ensures the sum of all outputs is 1, so the outputs can be interpreted as probabilities for each class. Exponentiation accentuates the difference between the input logits so that larger values are amplified | NB.1: Jacobian required due to interconnected denominator in forward eqn <br> NB.2: Matrix multiplication across all input grad activations connected to grad pre-activation (see diagram) |
 | BatchNorm | <img src="media/batchnorm_forward.png" alt="Image" width="300"/> | <img src="media/batchnorm_backward.png" alt="Image" width="300"/> |
 | | Mean *mu* and standard deviation *sigma* are both functions of all samples for a certain input feature (in my convention, they are calculated across the rows of the input matrices). This leads to difficulties when calculating the backpropagation equations. <br> Batch normalisation helps counter the vanishing/exploding gradients problem | Cheated here and didn't derive from first principles. Instead followed along derivation and implemented from: <br> https://chrisyeh96.github.io/2017/08/28/deriving-batchnorm-backprop.html |
-| (Cost) Categorical cross-entropy | | |
+| (Cost) Categorical cross-entropy | <img src="media/cat_crossentropy_forward.png" alt="Image" width="300"/> | <img src="media/cat_crossentropy_backward.png" alt="Image" width="300"/> |
 | | Notes | Notes |
 
 ### 1.1.2 Optimisers
