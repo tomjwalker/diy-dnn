@@ -10,7 +10,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | Dense | ✓ | $z_{ik}^l = \sum_j{w_{ij}^l a_{jk}^{l-1}} + b_{i}^l$ | $\mathbf{Z}^l = \mathbf{W}^l \cdot \mathbf{A}\^{l-1} + \mathbf{b}^l$ | $$da_{jk}^{l-1} = \sum_i{dz_{ik}^{l} \cdot w_{ij}}$$ <br> $$dw_{ij} = (1/m) * \sum_k{dz_{ik}^{l} \cdot a_{kj}^{l-1}}$$ <br> $$db_{i} = (1/m) * \sum_k{dz_{ik}^{l}}$$ | $$d\mathbf{A}^{l-1} = \mathbf{W}^T \cdot d\mathbf{Z}^{l}$$ <br> $$d\mathbf{W}^{l} = (1/m) * d\mathbf{Z}^l \cdot \mathbf{A}^{l-1, T}$$ <br> $$d\mathbf{b}^{l} = (1/m) * d\mathbf{Z}^l \cdot \mathbf{1}$$ |
 | ReLU | ✓ | $a_i = Relu(z_i)$ | $\mathbf{A} = Relu(\mathbf{Z})$ | $dz_i = 0, z_i < 0$ <br> $dz_i = da_i, z_i >= 0$ | $d\mathbf{Z} = Relu'(d\mathbf{A})$ |
 | Softmax | ✓ | $$a_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$$ | $$\mathbf{A} = \frac{\exp(\mathbf{Z})}{\mathbf{1}^T \cdot \exp(\mathbf{Z})}$$ | $$dz_j = \sum_i{da_i \frac{\partial a_i}{\partial z_j}}$$ <br> $\rightarrow$ <br> $$dz_j = \sum_i{da_i \cdot (a_i \cdot (\delta_{ij} - a_j))}$$ | $$d\mathbf{Z} = d\mathbf{A} \cdot \mathbf{D}$$ <br> where $\mathbf{D}$ is Jacobian with differing elements on- and off- diagonal|
-| BatchNorm | ✓ | $$\hat{x}_i = \frac{x_i - \mu(x_j)}{\sqrt{\sigma(x_j)^2 + \epsilon}}$$ <br> $$y_i = \gamma \hat{x}_i + \beta$$ | $$\hat{\mathbf{x}} = \frac{\mathbf{x} - \mu}{\sqrt{\mathbf{\sigma}^2 + \epsilon}}$$ <br> $$\mathbf{y} = \gamma \hat{\mathbf{x}} + \beta$$ | :---: | :---: |
+| BatchNorm | ✓ | $$\hat{z}_i = \frac{z_i - \mu(z_j)}{\sqrt{\sigma(z_j)^2 + \epsilon}}$$ <br> $$a_i = \gamma \hat{z}_i + \beta$$ | $$\hat{\mathbf{Z}} = \frac{\mathbf{Z} - \mu}{\sqrt{\mathbf{\sigma}^2 + \epsilon}}$$ <br> $$\mathbf{A} = \gamma \hat{\mathbf{Z}} + \beta$$ | $$d\gamma = \sum_i{da_i \cdot \hat{z_i}}$$ | :---: |
 | (Cost) Categorical cross-entropy | ✓ | $$J = -\frac{1}{m} \sum_{j, samples}^m{\sum_{i, logits}^n{y_{ij} * \log{\hat{y_{ij}}}}}$$ | $$J = -\frac{1}{m} \text{Tr}(\mathbf{Y}^T \cdot \log(\mathbf{\hat{Y}}))$$ <br> Where $\text{Tr}$ is the Trace function. Alternatively: <br> $$J = -\frac{1}{m} \mathbf{1}_n^T \cdot (\mathbf{Y} \odot \log(\mathbf{\hat{Y}}))\cdot \mathbf{1}_m$$ | $$\hat{y_{ij}} = -\frac{1}{m} \frac{y_{ij}}{\hat{y}_{ij}}$$ | $$J = -\frac{1}{m} (\mathbf{Y} \oslash \mathbf{\hat{Y}})$$ <br> Where $\oslash$ is element-wise division |
 
 | Layer | Forward | Backward |
@@ -74,6 +74,7 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 | $\frac{\partial \mathbf{Y}}{\partial x}$ | matrix-by-scalar   | Matrix output, same shape as input matrix $\mathbf{Y}$ (n, m) |
 | $\frac{\partial y}{\partial \mathbf{X}}$ | scalar-by-matrix   | Matrix output, same shape as transpose of denominator matrix (same shape as $\mathbf{X}^T$, i.e. (q, p)) |
 
+After compiling these equations, found the following resource, which is quite useful for the nuances of matrix calculus for machine learning: https://www.overleaf.com/project/5c2af0744a493c1181d1b2da
  
 ### 3.2. Cost derivative abbreviation
 Following the standard machine-learning abbreviation of the cost. 
