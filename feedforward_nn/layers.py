@@ -341,11 +341,11 @@ class Softmax(Layer):
         - layer input at backprop, dA (grad_activation)
 
         Differential dA/dZ is a Jacobian matrix, with shape (n_neurons, n_neurons). The diagonal elements are:
-        dA_i/dZ_i = A_i * (1 - A_i). The off-diagonal elements are: dA_i/dZ_j = -A_i * A_j. The off-diagonal elements are calculated
-        by multiplying the layer output by its transpose, and subtracting the diagonal elements (which are already
-        calculated).
+        dA_i/dZ_i = A_i * (1 - A_i). The off-diagonal elements are: dA_i/dZ_j = -A_i * A_j. The off-diagonal elements
+        are calculated by multiplying the layer output by its transpose, and subtracting the diagonal elements (which
+        are already calculated).
 
-        Finally, dZ = dA * dA/dZ = dA * Jacobian.
+        Finally, dZ = dA . dA/dZ = dA . Jacobian.
 
         Shapes:
         - self.layer_output = A = (n_neurons, m_samples)
@@ -372,7 +372,9 @@ class Softmax(Layer):
 
         # Calculate dZ = Jacobian . dA:
         # # dA is currently of shape (n_neurons, m_samples). Jacobian is of shape (n_neurons, n_neurons). Want dZ to be
-        # # the same shape as Z (n_neurons, m_samples), so matrix multiplication of (Jacobian . dA) ensures this.
+        # # the same shape as Z (n_neurons, m_samples), and matrix multiplication of (Jacobian . dA) ensures this.
+        # # The real reason for the matrix multiplication is because there are multiple layer output (activation) units
+        # # for each layer preactivation unit, and we need to sum over all of them to get the gradient of the loss
         grad_preactivation = np.matmul(jacobian, grad_activation)
 
         # Determine if a ClipNorm object has been passed in. If so, clip gradients
