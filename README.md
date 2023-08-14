@@ -30,9 +30,9 @@ Simple NumPy feed-forward neural network library from scratch. Applied to MNIST 
 
 | Optimiser | Implemented | Equation | Explanation |
 | :---: | :---: | :---: | :---: |
-| (Mini-batch) SGD | ✓ |  |  |
-| Adam | |  |  |
-| AdamW | |  |  |
+| (Mini-batch) SGD | ✓ | $$\mathbf{W} \leftarrow \mathbf{W} + \alpha d\mathbf{W}$$ | Simplest |
+| Adam |  | $\mathbf{M_t} = \beta_1 * \mathbf{M_{t-1}} + (1 - \beta_1) * d\mathbf{W}$ <br> $\mathbf{V_t} = \beta_2 * \mathbf{V_{t-1}} + (1 - \beta_2) * d\mathbf{W}$ <br> $\hat{\mathbf{M_t}} \/= (1 - \beta_1)$ <br> $\hat{\mathbf{V_t}} \/= (1 - \beta_2)$ <br> $$\mathbf{W} \leftarrow \mathbf{W} - \frac{\alpha \cdot \hat{\mathbf{M}}_t}{\sqrt{\hat{\mathbf{V}}_t} + \epsilon}$$ | Faster convergence due to adaptive learning rates where learning rates for each parameter are proportional to their historical magnitude; faster convergence too via bias correction, where initial values are not overly biased |
+| AdamW | |  | Plays better with L2 regularisation than Adam (similar to SGD) which is good for model generalisability. Retains training speed benefits of Adam |
 
 ### 1.1.3 Weight initialisers
 
