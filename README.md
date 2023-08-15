@@ -186,6 +186,6 @@ Below, on the LHS, the initial run without ClipNorm. On the RHS, with ClipNorm a
 
 After the clipnorm fix, dataset was expanded from the preliminary 100-sample set to the full 60000/10000 train/test MNIST dataset. The subsequent training loop again showed problems with training stability and a cost which shot upwards, after an initial promising trend.
 
-![]("/media/cost_explosion_full_dataset.png")
+![](/media/cost_explosion_full_dataset.png)
 
 
