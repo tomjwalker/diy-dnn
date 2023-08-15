@@ -161,9 +161,19 @@ An initial run of a simple, shallow neural network, was run on a limited sample 
 A first remedy for this was ClipNorm, which measures the norm of the gradients during back-propagation, and if they exceed a threshold, "clipping" them by renormalising so that the norm is the threshold. A norm threshold of 5 was selected, looking at the magnitudes of the gradients around the time the non-normalised training loop began to go south.
 
 Below, on the LHS, the initial run without ClipNorm. On the RHS, with ClipNorm applied. It's a bit rough-and-ready, but it improves the situation markedly:
+
 ![]("/media/accuracy_vs_gradient_norms__num_epochs_100__train_abs_samples_100__clip_grads_norm_False.png")
 
-
+<table>
+  <tr>
+    <td>
+      <img src="media/accuracy_vs_gradient_norms__num_epochs_100__train_abs_samples_100__clip_grads_norm_False.png" alt="Without ClipNorm">
+    </td>
+    <td>
+      <img src="media/accuracy_vs_gradient_norms__num_epochs_100__train_abs_samples_100__clip_grads_norm_True.png" alt="With ClipNorm">
+    </td>
+  </tr>
+</table>
 
 
 
