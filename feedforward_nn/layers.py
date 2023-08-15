@@ -212,7 +212,8 @@ class Dense(Layer):
         # Determine if a ClipNorm object has been passed in. If so, clip gradients
         clip_norm = None
         if "clip_grads_norm" in backprop_tools:
-            clip_norm = backprop_tools["clip_grads_norm"]
+            if backprop_tools["clip_grads_norm"] is not None:
+                clip_norm = backprop_tools["clip_grads_norm"]
 
         # ==============================================================================================================
         # Update weights and biases. These are stored as attributes of the layer
@@ -298,8 +299,9 @@ class Relu(Layer):
         grad_layer_preactivation = grad_layer_activation * (self.layer_input > 0)
 
         if "clip_grads_norm" in backprop_tools:
-            clip_norm = backprop_tools["clip_grads_norm"]
-            grad_layer_preactivation = clip_norm(grad_layer_preactivation)
+            if backprop_tools["clip_grads_norm"] is not None:
+                clip_norm = backprop_tools["clip_grads_norm"]
+                grad_layer_preactivation = clip_norm(grad_layer_preactivation)
 
         # Assert shape is same as input
         assert grad_layer_preactivation.shape == self.layer_input.shape
@@ -380,8 +382,9 @@ class Softmax(Layer):
         # Determine if a ClipNorm object has been passed in. If so, clip gradients
         clip_norm = None
         if "clip_grads_norm" in backprop_tools:
-            clip_norm = backprop_tools["clip_grads_norm"]
-            grad_preactivation = clip_norm(grad_preactivation)
+            if backprop_tools["clip_grads_norm"] is not None:
+                clip_norm = backprop_tools["clip_grads_norm"]
+                grad_preactivation = clip_norm(grad_preactivation)
 
         # Shapes of dA, dZ should be the same (n_neurons, m_samples)
         assert grad_preactivation.shape == grad_activation.shape
@@ -495,7 +498,8 @@ class BatchNorm(Layer):
         # Determine if a ClipNorm object has been passed in. If so, clip gradients
         clip_norm = None
         if "clip_grads_norm" in backprop_tools:
-            clip_norm = backprop_tools["clip_grads_norm"]
+            if backprop_tools["clip_grads_norm"] is not None:
+                clip_norm = backprop_tools["clip_grads_norm"]
 
         # Get number of samples
         m = input_grad_from_right.shape[1]
