@@ -163,6 +163,8 @@ $$d\mathbf{a} = \mathbf{W}^T \cdot d\mathbf{z}$$
 
 ## 4. Results
 
+In the discussion below, the starting architecture was a shallow neural network of a single Dense Layer of 50 neurons.
+
 ### 4.1. The effect of ClipNorm
 
 An initial run of a simple, shallow neural network, was run on a limited sample of the MNIST training data (100 samples) for a quick initial experiment with using the package. This exhibited clear signs of exploding gradients, with the training loop cost/accuracies initially going in the right direction, before the cost exploding past 10, and the accuracy flatlining at 10% (random guessing for the 10-digit MNIST dataset). Plotting the magnitudes of the gradients allowed an immediate diagnosis of exploding gradients.
@@ -186,6 +188,12 @@ Below, on the LHS, the initial run without ClipNorm. On the RHS, with ClipNorm a
 
 After the clipnorm fix, dataset was expanded from the preliminary 100-sample set to the full 60000/10000 train/test MNIST dataset. The subsequent training loop again showed problems with training stability and a cost which shot upwards, after an initial promising trend.
 
-![](/media/cost_explosion_full_dataset.png)
+In the figure below, training on the full dataset is in green (with zoomed-in graph showing promising early trend). Compared against the same architecture, trained on the 100-sample dataset, in red.
+<img src="/media/cost_explosion_full_dataset.png" alt="Image" width="600"/>
 
+### 4.3. Batch normalisation layers
 
+In an effort to further improve training stability, and avoid any issues from exploding gradients, a BatchNorm Layer was implemented in the library, and added to the existing architecture (shallow NN of a single Dense Layer of 50 neurons). This markedly improved the situation - long-term exploding cost values are now avoided, and training the neural network is a lot more stable. There are still some transient periods where the cost value shoots up (further investigation required), but after these periods, the network quickly recovers its best-so-far state.
+
+In the figure below, green is without batch normalisation, violet is with batch normalisation:
+<img src="/media/without_vs_with_batchnorm.png" alt="Image" width="600"/>
