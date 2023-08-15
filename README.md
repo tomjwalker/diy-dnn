@@ -171,8 +171,6 @@ A first remedy for this was ClipNorm, which measures the norm of the gradients d
 
 Below, on the LHS, the initial run without ClipNorm. On the RHS, with ClipNorm applied. It's a bit rough-and-ready, but it improves the situation markedly:
 
-![]("/media/accuracy_vs_gradient_norms__num_epochs_100__train_abs_samples_100__clip_grads_norm_False.png")
-
 <table>
   <tr>
     <td>
@@ -184,5 +182,10 @@ Below, on the LHS, the initial run without ClipNorm. On the RHS, with ClipNorm a
   </tr>
 </table>
 
+### 4.2. Training divergence on a larger dataset
+
+After the clipnorm fix, dataset was expanded from the preliminary 100-sample set to the full 60000/10000 train/test MNIST dataset. The subsequent training loop again showed problems with training stability and a cost which shot upwards, after an initial promising trend.
+
+![]("/media/cost_explosion_full_dataset.png")
 
 
