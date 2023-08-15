@@ -1,5 +1,12 @@
 # diy-dnn
-Simple NumPy feed-forward neural network library from scratch. Applied to MNIST dataset classification task.
+
+"What I cannot create, I do not understand"... the blackboard scrawl that launched a thousand neural-network-from-scratch projects. This being one of them.
+
+Implementation of a neural network library from scratch, using Numpy, and a subsequent application on the MNIST dataset. The library aims to follow design patterns from Keras (e.g. Layers objects), as well as Trax (e.g. training/evaluation Task and Loop objects).
+
+Weights & Biases project: https://wandb.ai/tom-walker-univ/mnist-classification-from-scratch
+
+A detailed discussion on the development and performance of the library on the MNIST dataset is in section 4, below.
 
 ## 1. Summary
 
