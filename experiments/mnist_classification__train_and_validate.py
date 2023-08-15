@@ -14,6 +14,8 @@ from feedforward_nn.tasks import (TrainingTask, EvaluationTask,
 
 import matplotlib.pyplot as plt
 
+import wandb
+
 
 def summarise_grads_logs(loop, norm_type=2):
     """
@@ -121,10 +123,37 @@ def save_metric_logs(metric_log_training, metric_log_evaluation, metric_name, me
         f"{metric_log_dir}/{metric_name}_evaluation_log__{run_config_suffix}.npy", metric_log_evaluation[metric_name]
     )
 
+def generate_wandb_init_kwargs(run_config):
+    """
+    Function generates a dictionary of keyword arguments for the wandb.init function, based on the run_config
+    dictionary.
+    """
+
+    # Initialise wandb_config dictionary
+    wandb_config = {}
+
+    # Populate wandb_config with run_config values
+    wandb_config["project"] = PROJECT_NAME
+
+    # Add run name
+    wandb_config["name"] = run_config["model_name"]
+
+    # The config dictionary for wandb is everything from run_config except for the model_name. Pop this, then
+    # add the rest to wandb_config as a dictionary as value for the key "config"
+    run_config.pop("model_name")
+    wandb_config["config"] = run_config
+
+    return wandb_config
+
 
 # ========================================
 # Main script
 # ========================================
+
+# Log in to Weights & Biases
+api_key = os.environ.get("WANDB_API_KEY")
+wandb.login(key=api_key)
+PROJECT_NAME = "mnist-classification-from-scratch"
 
 # Parameters and architecture names. These are used both as parameters into the model/loop, and as filenames for
 # saving the outputs of the training loop
@@ -136,7 +165,7 @@ MODEL_CHECKPOINTS_DIR = "model_checkpoints"
 # run config.
 RUN_SETTINGS = [
     {
-        "model_name": "mnist_ffnn_dense_50",
+        "model_name": "mnist_ffnn_dense_50_100_sample",
         "architecture": [
             Dense(50),
             Relu(),
@@ -144,8 +173,20 @@ RUN_SETTINGS = [
             Softmax(),
         ],
         "num_epochs": 50,
-        "train_abs_samples": None,
+        "train_abs_samples": 100,
         "clip_grads_norm": False,
+    },
+    {
+        "model_name": "mnist_ffnn_dense_50_100_sample",
+        "architecture": [
+            Dense(50),
+            Relu(),
+            Dense(10),
+            Softmax(),
+        ],
+        "num_epochs": 50,
+        "train_abs_samples": 100,
+        "clip_grads_norm": True,
     },
     {
         "model_name": "mnist_ffnn_dense_50",
@@ -232,16 +273,21 @@ training_task = TrainingTask(
     cost=CategoricalCrossentropyCost(),
     metrics=[CategoricalCrossentropyCost(), AccuracyMetric()],
     clip_grads_norm=True,
+    log_wandb=True,
 )
 
 # Define evaluation task
 evaluation_task = EvaluationTask(
     metrics=[CategoricalCrossentropyCost(), AccuracyMetric()],
+    log_wandb=True,
 )
 
 
 # Sweep over all runs specified in RUN_SETTINGS
 for run_config in RUN_SETTINGS:
+
+    # Initialise wandb run
+    wandb_run = wandb.init(**generate_wandb_init_kwargs(run_config))
 
     # Filepath prefix specifies the run settings as defined above
     run_config_without_architecture = {key: value for key, value in run_config.items() if key != "architecture"}
@@ -293,6 +339,9 @@ for run_config in RUN_SETTINGS:
             plot_dir=PLOTS_DIR,
             run_config_suffix=run_suffix,
         )
+
+    # Close wandb run
+    wandb_run.finish()
 
 # # Look at some predictions on the evaluation set
 # predictions = loop.model.forward_pass(loop.features_val, mode="infer")

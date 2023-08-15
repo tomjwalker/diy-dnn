@@ -9,6 +9,8 @@ Y ---> labels
 import numpy as np
 import pickle
 from typing import Tuple, Union, List
+
+import wandb
 from tqdm.auto import tqdm
 
 import os
@@ -58,6 +60,7 @@ class TrainingTask:
         - cost: The cost function to be used.
         - metrics: The metrics to be used and logged.
         - clip_grads_norm: Whether to clip the gradients norm or not.
+        - log_wandb: Whether to log the metrics to wandb or not.
         - clip_kwargs: Keyword arguments to be passed to the ClipNorm object.
 
     Attributes:
@@ -72,6 +75,7 @@ class TrainingTask:
             cost: CategoricalCrossentropyCost,
             metrics: Union[None, List[BaseMetric]] = None,
             clip_grads_norm: bool = False,
+            log_wandb: bool = False,
             **clip_kwargs,
     ):
         """
@@ -93,6 +97,8 @@ class TrainingTask:
             clip_params = {**TrainingTask.DEFAULT_CLIP_GRADS_NORM, **clip_kwargs}
             self.clip_grads_norm = ClipNorm(**clip_params)
 
+        self.log_wandb = log_wandb
+
 
 class EvaluationTask:
     """
@@ -100,6 +106,7 @@ class EvaluationTask:
 
     Parameters:
         - metrics: The metrics to be used and logged.
+        - log_wandb: Whether to log the metrics to wandb or not.
 
     Attributes:
         - metric_log: A dictionary of metric names and their corresponding logs.
@@ -108,6 +115,7 @@ class EvaluationTask:
     def __init__(
             self,
             metrics: Union[None, List[BaseMetric]] = None,
+            log_wandb: bool = False,
     ):
         self.mode = "infer"  # Passed into models - important for behaviour of certain layers which behave
         # differently in training and evaluation modes (e.g. batch norm)
@@ -115,6 +123,8 @@ class EvaluationTask:
         self.metrics = {metric.name: metric for metric in metrics}
 
         self.metric_log = {metric.name: [] for metric in metrics}
+
+        self.log_wandb = log_wandb
 
 
 class ModelSaveTask:
@@ -316,7 +326,14 @@ class Loop:
                         # Append metric to metric log
                         self.training_task.metric_log[metric.name].append(metric_train)
                         # Add metric to metric_values dictionary
-                        metric_values[f"Training {metric.name}"] = metric_train
+                        metric_values[f"train/{metric.name}"] = metric_train
+
+                # Log to Weights & Biases
+                wandb_trainin_metrics = metric_values.copy()
+                wandb_trainin_metrics["train/epoch"] = epoch
+                wandb_trainin_metrics["train/batch"] = batch_idx
+                if self.training_task.log_wandb:
+                    wandb.log(metric_values)
 
                 # =====================
                 # Evaluate
@@ -333,6 +350,12 @@ class Loop:
                             metric_val = metric(labels_val, predictions_val)
                             self.evaluation_task.metric_log[metric.name].append(metric_val)
                             metric_values[f"Evaluation {metric.name}"] = metric_val
+
+                    # Log to Weights & Biases
+                    wandb_evaluation_metrics = metric_values.copy()
+                    wandb_evaluation_metrics["evaluation/epoch"] = epoch
+                    if self.evaluation_task.log_wandb:
+                        wandb.log(wandb_evaluation_metrics)
 
                 # =====================
                 # Update progress bar
