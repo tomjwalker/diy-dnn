@@ -166,3 +166,4 @@ cython_debug/
 /experiments/data_cache/
 /experiments/model_checkpoints/
 /experiments/plots/
+/experiments/wandb/
