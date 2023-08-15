@@ -148,6 +148,9 @@ Specific (left-hand diagram, specific dense layout).
   dz_1
 \end{pmatrix}
 ```
+*or:*
+$$d\mathbf{a} = \mathbf{W}^T \cdot d\mathbf{z}$$
+
 
 ## 4. Results
 
@@ -158,10 +161,9 @@ An initial run of a simple, shallow neural network, was run on a limited sample 
 A first remedy for this was ClipNorm, which measures the norm of the gradients during back-propagation, and if they exceed a threshold, "clipping" them by renormalising so that the norm is the threshold. A norm threshold of 5 was selected, looking at the magnitudes of the gradients around the time the non-normalised training loop began to go south.
 
 Below, on the LHS, the initial run without ClipNorm. On the RHS, with ClipNorm applied. It's a bit rough-and-ready, but it improves the situation markedly:
+![]()
 
 
 
-*or:*
-$$d\mathbf{a} = \mathbf{W}^T \cdot d\mathbf{z}$$
 
 
