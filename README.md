@@ -210,10 +210,13 @@ In the figure below, green is without batch normalisation, violet is with batch 
 
 With a network which now achieves reasonable accuracy, and a workable training stability, on the MNIST dataset (albeit with yet-to-be-explained transient mood swings), a quick scan of different architectures was performed.
 
-| Graph Colour | Neural Network Architecture Description |
-| ----------- | -------------------------------------- |
-| ![](https://via.placeholder.com/15/7D54B2/000000?text=+) | **Baseline shallow:** Dense(50) // BatchNorm |
-| ![](https://via.placeholder.com/15/E87B9F/000000?text=+) | **Large shallow:** Dense(100) // BatchNorm |
-| ![](https://via.placeholder.com/15/E57439/000000?text=+) | **Small shallow:** Dense(25) // BatchNorm |
-| ![](https://via.placeholder.com/15/87CEBF/000000?text=+) | **Deep:** Dense(50) // BatchNorm // Dense(50) // BatchNorm |
+| Legend | Neural Network Architecture Description | Eval accuracy | Discussion |
+| ----------- | -------------------------------------- | --- | --- |
+| ![](https://via.placeholder.com/15/7D54B2/000000?text=+) | **Baseline shallow:** Dense(50) // BatchNorm | 75% | Two lengthy training "mood swings" |
+| ![](https://via.placeholder.com/15/E87B9F/000000?text=+) | **Large shallow:** Dense(100) // BatchNorm | 86% | Best-so-far for accuracy. Most stable training too. |
+| ![](https://via.placeholder.com/15/E57439/000000?text=+) | **Small shallow:** Dense(25) // BatchNorm | 36% | Poor performance. 25 neurons may be too much compression for the 28^2 pixel input features |
+| ![](https://via.placeholder.com/15/87CEBF/000000?text=+) | **Deep:** Dense(50) // BatchNorm // Dense(50) // BatchNorm | 83% | Competitive with shallow 100-neuron network, but this network contains far more parameters, and a deep architecture allowing for more complex function approximation, so one might think it should perform better. Possibly requires more nuanced techniques for combatting vanishing gradients. |
 
+<p align="center">
+<img src="/media/architecture_scan.png" alt="Image" width="600"/>
+</p>
