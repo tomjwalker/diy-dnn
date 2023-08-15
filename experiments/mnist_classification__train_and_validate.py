@@ -77,13 +77,14 @@ def plot_metric_logs_vs_gradient_norms(metric_log_training, metric_log_evaluatio
     axs[0].axvline(max_metric_log_training, color="black", linestyle="--")
     axs[1].axvline(max_metric_log_training, color="black", linestyle="--")
 
-    # Get the gradient norm values at the maximum of the metric_log_training.
-    # Display these values on the lower axes
-    max_norms = norm_df.iloc[max_metric_log_training]
-    for i, norm in enumerate(max_norms):
-        axs[1].text(
-            max_metric_log_training, norm, f"{norm:.2f}", horizontalalignment="right", verticalalignment="bottom"
-        )
+    # # Get the gradient norm values at the maximum of the metric_log_training.
+    # # Display these values on the lower axes
+    # max_metric_log_training = min(max_metric_log_training, (norm_df.shape[0] - 1))
+    # max_norms = norm_df.iloc[max_metric_log_training, :]
+    # for i, norm in enumerate(max_norms):
+    #     axs[1].text(
+    #         max_metric_log_training, norm, f"{norm:.2f}", horizontalalignment="right", verticalalignment="bottom"
+    #     )
 
     # Display text for the maximum of the metric_log_training
     axs[0].text(
@@ -165,7 +166,7 @@ MODEL_CHECKPOINTS_DIR = "model_checkpoints"
 # run config.
 RUN_SETTINGS = [
     {
-        "model_name": "mnist_ffnn_dense_50_100_sample",
+        "model_name": "mnist_ffnn_dense_50_sample_100",
         "architecture": [
             Dense(50),
             Relu(),
@@ -177,7 +178,7 @@ RUN_SETTINGS = [
         "clip_grads_norm": False,
     },
     {
-        "model_name": "mnist_ffnn_dense_50_100_sample",
+        "model_name": "mnist_ffnn_dense_50_clipnorm_sample_100",
         "architecture": [
             Dense(50),
             Relu(),
@@ -267,21 +268,6 @@ features, labels = load_mnist()
 # Preprocess MNIST dataset
 features, labels = preprocess_mnist(features, labels)
 
-# Define training task
-training_task = TrainingTask(
-    optimiser=GradientDescentOptimiser(learning_rate=0.01),
-    cost=CategoricalCrossentropyCost(),
-    metrics=[CategoricalCrossentropyCost(), AccuracyMetric()],
-    clip_grads_norm=True,
-    log_wandb=True,
-)
-
-# Define evaluation task
-evaluation_task = EvaluationTask(
-    metrics=[CategoricalCrossentropyCost(), AccuracyMetric()],
-    log_wandb=True,
-)
-
 
 # Sweep over all runs specified in RUN_SETTINGS
 for run_config in RUN_SETTINGS:
@@ -293,6 +279,21 @@ for run_config in RUN_SETTINGS:
     run_config_without_architecture = {key: value for key, value in run_config.items() if key != "architecture"}
     run_suffix = "__".join([f"{key}_{str(value)}" for key, value in run_config_without_architecture.items()])
     run_suffix = run_suffix.replace(".", "_")  # If any values are floats, replace "." with "_" for filename
+
+    # Define training task
+    training_task = TrainingTask(
+        optimiser=GradientDescentOptimiser(learning_rate=0.01),
+        cost=CategoricalCrossentropyCost(),
+        metrics=[CategoricalCrossentropyCost(), AccuracyMetric()],
+        clip_grads_norm=run_config["clip_grads_norm"],
+        log_wandb=True,
+    )
+
+    # Define evaluation task
+    evaluation_task = EvaluationTask(
+        metrics=[CategoricalCrossentropyCost(), AccuracyMetric()],
+        log_wandb=True,
+    )
 
     # Instantiate a model saver task
     model_saver = ModelSaveTask(
