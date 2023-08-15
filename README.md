@@ -198,8 +198,18 @@ In the figure below, training on the full dataset is in green (with zoomed-in gr
 
 In an effort to further improve training stability, and avoid any issues from exploding gradients, a BatchNorm Layer was implemented in the library, and added to the existing architecture (shallow NN of a single Dense Layer of 50 neurons). This markedly improved the situation - long-term exploding cost values are now avoided, and training the neural network is a lot more stable. There are still some transient periods where the cost value shoots up (further investigation required), but after these periods, the network quickly recovers its best-so-far state.
 
+The best evaluation accuracy for this network on the MNIST dataset is 75%.
+
 In the figure below, green is without batch normalisation, violet is with batch normalisation:
 
 <p align="center">
 <img src="/media/without_vs_with_batchnorm.png" alt="Image" width="600"/>
 </p>
+
+### 4.4. Different architectures
+
+With a network which now achieves reasonable accuracy, and a workable training stability, on the MNIST dataset (albeit with yet-to-be-explained transient mood swings), a quick scan of different architectures was performed.
+
+<span style="color:red">This is red text</span>
+<span style="color:blue">This is blue text</span>
+<span style="color:green">This is green text</span>
