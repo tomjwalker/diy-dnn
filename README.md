@@ -8,6 +8,8 @@ Weights & Biases project: https://wandb.ai/tom-walker-univ/mnist-classification-
 
 A detailed discussion on the development and performance of the library on the MNIST dataset is in section 4, below.
 
+Personal notes on layer forward/backward equations, and the matrix calculus conventions followed, below in sections 1 and 3.
+
 ## 1. Summary
 
 ### 1.1.1 Layers
