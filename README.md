@@ -1,6 +1,6 @@
 # diy-dnn
 
-"What I cannot create, I do not understand"... the blackboard scrawl that launched a thousand neural-network-from-scratch projects. This being one of them.
+"What I cannot create, I do not understand"... the blackboard scrawl that launched a thousand neural-network-from-scratch projects. This being one of them (I'll spare you the Medium article though)...
 
 Implementation of a neural network library from scratch, using Numpy, and a subsequent application on the MNIST dataset. The library aims to follow design patterns from Keras (e.g. Layers objects), as well as Trax (e.g. training/evaluation Task and Loop objects).
 
