@@ -212,7 +212,8 @@ With a network which now achieves reasonable accuracy, and a workable training s
 
 | Graph Colour | Neural Network Architecture Description |
 | ----------- | -------------------------------------- |
-| ![Red Spot](https://via.placeholder.com/15/ff0000/000000?text=+) | Description of the neural network architecture for red |
-| ![Blue Spot](https://via.placeholder.com/15/0000ff/000000?text=+) | Description of the neural network architecture for blue |
-| ![Green Spot](https://via.placeholder.com/15/00ff00/000000?text=+) | Description of the neural network architecture for green |
+| ![](https://via.placeholder.com/15/7D54B2/000000?text=+) | **Baseline shallow:** Dense(50) // BatchNorm |
+| ![](https://via.placeholder.com/15/E87B9F/000000?text=+) | **Large shallow:** Dense(100) // BatchNorm |
+| ![](https://via.placeholder.com/15/E57439/000000?text=+) | **Small shallow:** Dense(25) // BatchNorm |
+| ![](https://via.placeholder.com/15/87CEBF/000000?text=+) | **Deep:** Dense(50) // BatchNorm // Dense(50) // BatchNorm |
 
