@@ -210,6 +210,9 @@ In the figure below, green is without batch normalisation, violet is with batch 
 
 With a network which now achieves reasonable accuracy, and a workable training stability, on the MNIST dataset (albeit with yet-to-be-explained transient mood swings), a quick scan of different architectures was performed.
 
-<span style="color:red">This is red text</span>
-<span style="color:blue">This is blue text</span>
-<span style="color:green">This is green text</span>
+| Graph Colour | Neural Network Architecture Description |
+| ----------- | -------------------------------------- |
+| ![Red Spot](https://via.placeholder.com/15/ff0000/000000?text=+) | Description of the neural network architecture for red |
+| ![Blue Spot](https://via.placeholder.com/15/0000ff/000000?text=+) | Description of the neural network architecture for blue |
+| ![Green Spot](https://via.placeholder.com/15/00ff00/000000?text=+) | Description of the neural network architecture for green |
+
