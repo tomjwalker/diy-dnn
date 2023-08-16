@@ -217,6 +217,16 @@ With a network which now achieves reasonable accuracy, and a workable training s
 | ![](https://via.placeholder.com/15/E57439/000000?text=+) | **Small shallow:** Dense(25) // BatchNorm | 36% | Poor performance. 25 neurons may be too much compression for the 28^2 pixel input features |
 | ![](https://via.placeholder.com/15/87CEBF/000000?text=+) | **Deep:** Dense(50) // BatchNorm // Dense(50) // BatchNorm | 83% | Competitive with shallow 100-neuron network, but this network contains far more parameters, and a deep architecture allowing for more complex function approximation, so one might think it should perform better. Possibly requires more nuanced techniques for combatting vanishing gradients. |
 
+## 5. TODO
+
+1. Sort out model saving / loading
+    1. Pickling a full Loop object is resulting in some memory crashes
+    2. Discrepancy between `_train_and_validate` and `evaluate` model save names. Now WandB implemented, replace names with an UUID; WandB tracks the config
+2. Understand why there is still training instability. Possible candidates:
+    1. An issue with the final batch of the epoch not being the same size as the rest? On a similar note, should there be a (1/m) term for some BatchNorm gradient calculations, to render them batch size-independent?
+    2. Look deeper into vanishing gradients. Exploding gradients should be mitigated now with ClipNorm, BatchNorm and He initialisation, but no work has been done on v. gradients
+    3. Mini-batch SGD overshooting local optima in weight space? What would the effects of Adam / AdamW be? Implement, and perform a scan of optimisers
+
 <p align="center">
 <img src="/media/architecture_scan.png" alt="Image" width="600"/>
 </p>
