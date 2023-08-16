@@ -69,9 +69,9 @@ MODEL_CHECKPOINTS_DIR = "model_checkpoints"
 # List of dict of run settings. Each dict specifies a run, and the list of dicts specifies a set of runs to compare
 RUN_SETTINGS = [
     {
-        "model_name": "mnist_ffnn_dense_50_batchnorm",
+        "model_name": "mnist_ffnn_dense_50_dense_50_batchnorm",
         "num_epochs": 10,
-        "train_abs_samples": 200,
+        "train_abs_samples": None,
         "clip_grads_norm": True,
     },
 ]

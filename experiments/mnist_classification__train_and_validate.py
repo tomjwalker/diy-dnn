@@ -141,7 +141,7 @@ def generate_wandb_init_kwargs(run_config):
 
     # The config dictionary for wandb is everything from run_config except for the model_name. Pop this, then
     # add the rest to wandb_config as a dictionary as value for the key "config"
-    run_config.pop("model_name")
+    run_config.copy().pop("model_name")
     wandb_config["config"] = run_config
 
     return wandb_config
@@ -165,56 +165,56 @@ MODEL_CHECKPOINTS_DIR = "model_checkpoints"
 # This list specifies a sweep of different models/runs. Each element of the list is a dictionary, which specifies the
 # run config.
 RUN_SETTINGS = [
-    {
-        "model_name": "mnist_ffnn_dense_50_sample_100",
-        "architecture": [
-            Dense(50),
-            Relu(),
-            Dense(10),
-            Softmax(),
-        ],
-        "num_epochs": 50,
-        "train_abs_samples": 100,
-        "clip_grads_norm": False,
-    },
-    {
-        "model_name": "mnist_ffnn_dense_50_clipnorm_sample_100",
-        "architecture": [
-            Dense(50),
-            Relu(),
-            Dense(10),
-            Softmax(),
-        ],
-        "num_epochs": 50,
-        "train_abs_samples": 100,
-        "clip_grads_norm": True,
-    },
-    {
-        "model_name": "mnist_ffnn_dense_50",
-        "architecture": [
-            Dense(50),
-            Relu(),
-            Dense(10),
-            Softmax(),
-        ],
-        "num_epochs": 50,
-        "train_abs_samples": None,
-        "clip_grads_norm": True,
-    },
-    {
-        "model_name": "mnist_ffnn_dense_50_batchnorm",
-        "architecture": [
-            Dense(50),
-            BatchNorm(),
-            Relu(),
-            Dense(10),
-            BatchNorm(),
-            Softmax(),
-        ],
-        "num_epochs": 50,
-        "train_abs_samples": None,
-        "clip_grads_norm": True,
-    },
+    # {
+    #     "model_name": "mnist_ffnn_dense_50_sample_100",
+    #     "architecture": [
+    #         Dense(50),
+    #         Relu(),
+    #         Dense(10),
+    #         Softmax(),
+    #     ],
+    #     "num_epochs": 100,
+    #     "train_abs_samples": 100,
+    #     "clip_grads_norm": False,
+    # },
+    # {
+    #     "model_name": "mnist_ffnn_dense_50_clipnorm_sample_100",
+    #     "architecture": [
+    #         Dense(50),
+    #         Relu(),
+    #         Dense(10),
+    #         Softmax(),
+    #     ],
+    #     "num_epochs": 100,
+    #     "train_abs_samples": 100,
+    #     "clip_grads_norm": True,
+    # },
+    # {
+    #     "model_name": "mnist_ffnn_dense_50",
+    #     "architecture": [
+    #         Dense(50),
+    #         Relu(),
+    #         Dense(10),
+    #         Softmax(),
+    #     ],
+    #     "num_epochs": 10,
+    #     "train_abs_samples": None,
+    #     "clip_grads_norm": True,
+    # },
+    # {
+    #     "model_name": "mnist_ffnn_dense_50_batchnorm",
+    #     "architecture": [
+    #         Dense(50),
+    #         BatchNorm(),
+    #         Relu(),
+    #         Dense(10),
+    #         BatchNorm(),
+    #         Softmax(),
+    #     ],
+    #     "num_epochs": 20,
+    #     "train_abs_samples": None,
+    #     "clip_grads_norm": True,
+    # },
     {
         "model_name": "mnist_ffnn_dense_100_batchnorm",
         "architecture": [
@@ -225,41 +225,41 @@ RUN_SETTINGS = [
             BatchNorm(),
             Softmax(),
         ],
-        "num_epochs": 50,
+        "num_epochs": 1,
         "train_abs_samples": None,
         "clip_grads_norm": True,
     },
-    {
-        "model_name": "mnist_ffnn_dense_25_batchnorm",
-        "architecture": [
-            Dense(25),
-            BatchNorm(),
-            Relu(),
-            Dense(10),
-            BatchNorm(),
-            Softmax(),
-        ],
-        "num_epochs": 50,
-        "train_abs_samples": None,
-        "clip_grads_norm": True,
-    },
-    {
-        "model_name": "mnist_ffnn_dense_50_dense_50_batchnorm",
-        "architecture": [
-            Dense(50),
-            BatchNorm(),
-            Relu(),
-            Dense(50),
-            BatchNorm(),
-            Relu(),
-            Dense(10),
-            BatchNorm(),
-            Softmax(),
-        ],
-        "num_epochs": 50,
-        "train_abs_samples": None,
-        "clip_grads_norm": True,
-    },
+    # {
+    #     "model_name": "mnist_ffnn_dense_25_batchnorm",
+    #     "architecture": [
+    #         Dense(25),
+    #         BatchNorm(),
+    #         Relu(),
+    #         Dense(10),
+    #         BatchNorm(),
+    #         Softmax(),
+    #     ],
+    #     "num_epochs": 10,
+    #     "train_abs_samples": None,
+    #     "clip_grads_norm": True,
+    # },
+    # {
+    #     "model_name": "mnist_ffnn_dense_50_dense_50_batchnorm",
+    #     "architecture": [
+    #         Dense(50),
+    #         BatchNorm(),
+    #         Relu(),
+    #         Dense(50),
+    #         BatchNorm(),
+    #         Relu(),
+    #         Dense(10),
+    #         BatchNorm(),
+    #         Softmax(),
+    #     ],
+    #     "num_epochs": 10,
+    #     "train_abs_samples": None,
+    #     "clip_grads_norm": True,
+    # },
 ]
 
 # Load MNIST dataset
