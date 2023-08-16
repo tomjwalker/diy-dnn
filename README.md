@@ -246,6 +246,6 @@ Note: gradient ClipNorm still applied, so that no gradient norms exceed the norm
     2. Now WandB implemented, replace names with an UUID; WandB tracks the config
 2. Understand why there is still training instability. Possible candidates:
     1. An issue with the final batch of the epoch not being the same size as the rest? On a similar note, should there be a (1/m) term for some BatchNorm gradient calculations, to render them batch size-independent?
-    2. Look deeper into vanishing gradients. Exploding gradients should be mitigated now with ClipNorm, BatchNorm and He initialisation, but no work has been done on v. gradients
+    2. Look deeper into vanishing gradients. Exploding gradients should be mitigated now with ClipNorm, BatchNorm and He initialisation, but no work has been done on vanishing gradients. (Related?) - implement and investigate Leaky ReLU units
     3. Mini-batch SGD overshooting local optima in weight space? What would the effects of Adam / AdamW be? Implement, and perform a scan of optimisers
     4. On that final point, also implement and try regularisation, dropout and try larger mini-batch sizes 
