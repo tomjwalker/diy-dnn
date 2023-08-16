@@ -10,6 +10,10 @@ A detailed discussion on the development and performance of the library on the M
 
 Personal notes on layer forward/backward equations, and the matrix calculus conventions followed, below in sections 1 and 3.
 
+<p align="center">
+<img src="/media/digit_sample.png" alt="Image" width="600"/>
+</p>
+
 ## 1. Summary
 
 ### 1.1.1 Layers
