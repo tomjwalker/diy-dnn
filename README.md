@@ -230,3 +230,4 @@ With a network which now achieves reasonable accuracy, and a workable training s
     1. An issue with the final batch of the epoch not being the same size as the rest? On a similar note, should there be a (1/m) term for some BatchNorm gradient calculations, to render them batch size-independent?
     2. Look deeper into vanishing gradients. Exploding gradients should be mitigated now with ClipNorm, BatchNorm and He initialisation, but no work has been done on v. gradients
     3. Mini-batch SGD overshooting local optima in weight space? What would the effects of Adam / AdamW be? Implement, and perform a scan of optimisers
+    4. On that final point, also implement and try regularisation, dropout and try larger mini-batch sizes 
