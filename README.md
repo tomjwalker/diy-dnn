@@ -11,7 +11,7 @@ A detailed discussion on the development and performance of the library on the M
 Personal notes on layer forward/backward equations, and the matrix calculus conventions followed, below in sections 1 and 3.
 
 <p align="center">
-<img src="/media/digit_sample.png" alt="Image" width="600"/>
+<img src="/media/digit_sample.png" alt="Image" width="800"/>
 </p>
 
 ## 1. Summary
@@ -225,11 +225,25 @@ With a network which now achieves reasonable accuracy, and a workable training s
 <img src="/media/architecture_scan.png" alt="Image" width="600"/>
 </p>
 
+### 4.5. Sample results
+
+(This from the "deep" architecture above)
+
+<p align="center">
+<img src="/media/digit_sample.png" alt="Image" width="800"/>
+</p>
+
+Note: gradient ClipNorm still applied, so that no gradient norms exceed the norm threshold of 5 (see lower axis in figure below)
+
+<p align="center">
+<img src="/media/deep_nn_clipnorm_example.png" alt="Image" width="600"/>
+</p>
+
 ## 5. TODO
 
 1. Sort out model saving / loading
-    1. Pickling a full Loop object is resulting in some memory crashes
-    2. Discrepancy between `_train_and_validate` and `evaluate` model save names. Now WandB implemented, replace names with an UUID; WandB tracks the config
+    1. Pickling a full Loop object is resulting in some memory crashes. Save best model and last model only
+    2. Now WandB implemented, replace names with an UUID; WandB tracks the config
 2. Understand why there is still training instability. Possible candidates:
     1. An issue with the final batch of the epoch not being the same size as the rest? On a similar note, should there be a (1/m) term for some BatchNorm gradient calculations, to render them batch size-independent?
     2. Look deeper into vanishing gradients. Exploding gradients should be mitigated now with ClipNorm, BatchNorm and He initialisation, but no work has been done on v. gradients
