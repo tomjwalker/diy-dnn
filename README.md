@@ -11,7 +11,7 @@ A detailed discussion on the development and performance of the library on the M
 Personal notes on layer forward/backward equations, and the matrix calculus conventions followed, below in sections 1 and 3.
 
 <p align="center">
-<img src="/media/digit_sample.png" alt="Image" width="800"/>
+<img src="/media/digit_sample.png" alt="Image" width="1000"/>
 </p>
 
 ## 1. Summary
@@ -230,7 +230,7 @@ With a network which now achieves reasonable accuracy, and a workable training s
 (This from the "deep" architecture above)
 
 <p align="center">
-<img src="/media/digit_sample.png" alt="Image" width="800"/>
+<img src="/media/digit_sample.png" alt="Image" width="1000"/>
 </p>
 
 Note: gradient ClipNorm still applied, so that no gradient norms exceed the norm threshold of 5 (see lower axis in figure below)
